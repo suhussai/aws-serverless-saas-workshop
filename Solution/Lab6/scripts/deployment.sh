@@ -17,7 +17,7 @@ fi
 
 echo "server code is getting deployed"
 cd ../server
-echo "$(date) switched to ../server" >> /tmp/timing-output-$(date '+%s').log
+echo "$(date) switched to ../server" >> /tmp/timing-output.log
 REGION=$(aws configure get region)
 
 echo "Validating server code using pylint"
@@ -41,7 +41,7 @@ REGION=$(aws configure get region)
 sam build -t tenant-template.yaml --use-container
 sam deploy --config-file tenant-samconfig.toml --region=$REGION
 cd ../scripts
-echo "$(date) switched back to scripts" >> /tmp/timing-output-$(date '+%s').log
+echo "$(date) switched back to scripts" >> /tmp/timing-output.log
 
 if [ "$IS_RUNNING_IN_EVENT_ENGINE" = false ]; then
   ADMIN_SITE_URL=$(aws cloudformation describe-stacks --stack-name serverless-saas --query "Stacks[0].Outputs[?OutputKey=='AdminAppSite'].OutputValue" --output text)

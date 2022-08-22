@@ -60,20 +60,20 @@ if [[ $server -eq 1 ]] || [[ $pipeline -eq 1 ]]; then
 
   #Deploying CI/CD pipeline
   cd ../server/TenantPipeline/
-  echo "$(date) switched to ../server/TenantPipeline/" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched to ../server/TenantPipeline/" >> /tmp/timing-output.log
   npm install && npm run build 
   cdk bootstrap  
   cdk deploy --require-approval never
 
   cd ../../scripts
-  echo "$(date) switched back to scripts" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched back to scripts" >> /tmp/timing-output.log
 
 fi
 
 if [[ $server -eq 1 ]] || [[ $bootstrap -eq 1 ]]; then
   echo "Bootstrap server code is getting deployed"
   cd ../server
-  echo "$(date) switched to ../server" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched to ../server" >> /tmp/timing-output.log
   REGION=$(aws configure get region)
   echo "Validating server code using pylint"
   python3 -m pylint -E -d E0401 $(find . -iname "*.py" -not -path "./.aws-sam/*" -not -path "./TenantPipeline/node_modules/*")
@@ -92,7 +92,7 @@ if [[ $server -eq 1 ]] || [[ $bootstrap -eq 1 ]]; then
     
 
   cd ../scripts
-  echo "$(date) switched back to scripts" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched back to scripts" >> /tmp/timing-output.log
 
 fi
 
@@ -123,7 +123,7 @@ if [[ $client -eq 1 ]]; then
   fi
 
   cd ../client/Application
-  echo "$(date) switched to ../client/Application" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched to ../client/Application" >> /tmp/timing-output.log
 
   echo "Configuring environment for App Client"
 

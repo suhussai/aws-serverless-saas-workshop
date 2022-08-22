@@ -33,7 +33,7 @@ fi
 if [[ $server -eq 1 ]]; then
   echo "Server code is getting deployed"
   cd ../server || exit # stop execution if cd fails
-  echo "$(date) switched to ../server" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched to ../server" >> /tmp/timing-output.log
   REGION=$(aws configure get region)
 
   DEFAULT_SAM_S3_BUCKET=$(grep s3_bucket samconfig.toml | cut -d'=' -f2 | cut -d \" -f2)
@@ -66,7 +66,7 @@ if [[ $server -eq 1 ]]; then
   sam build -t template.yaml --use-container
   sam deploy --config-file samconfig.toml --region="$REGION" --stack-name="$stackname"
   cd ../scripts || exit # stop execution if cd fails
-  echo "$(date) switched back to scripts" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched back to scripts" >> /tmp/timing-output.log
 fi
 
 if [[ $client -eq 1 ]]; then
@@ -84,7 +84,7 @@ if [[ $client -eq 1 ]]; then
   fi
 
   cd ../client/Application || exit # stop execution if cd fails
-  echo "$(date) switched to ../client/Application" >> /tmp/timing-output-$(date '+%s').log
+  echo "$(date) switched to ../client/Application" >> /tmp/timing-output.log
 
   echo "Configuring environment for App Client"
 
