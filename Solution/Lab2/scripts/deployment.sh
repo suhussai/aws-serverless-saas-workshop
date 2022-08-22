@@ -45,6 +45,7 @@ if [[ $server -eq 1 ]]; then
   echo "Server code is getting deployed"
 
   cd ../server || exit # stop execution if cd fails
+  echo "$(date) switched to ../server" >>/tmp/timing-output-$(date '+%s').log
   REGION=$(aws configure get region)
   DEFAULT_SAM_S3_BUCKET=$(grep s3_bucket samconfig.toml | cut -d'=' -f2 | cut -d \" -f2)
   echo "aws s3 ls s3://$DEFAULT_SAM_S3_BUCKET"
@@ -89,6 +90,7 @@ if [[ $server -eq 1 ]]; then
   fi
 
   cd ../scripts || exit # stop execution if cd fails
+  echo "$(date) switched back to scripts" >>/tmp/timing-output-$(date '+%s').log
 fi
 
 if [ "$IS_RUNNING_IN_EVENT_ENGINE" = false ]; then
@@ -137,6 +139,7 @@ if [[ $client -eq 1 ]]; then
   fi
 
   cd ../client/Admin || exit # stop execution if cd fails
+  echo "$(date) switched to ../client/Admin" >>/tmp/timing-output-$(date '+%s').log
 
   echo "Configuring environment for Admin Client"
   cat <<EoF >./src/environments/environment.prod.ts
@@ -184,8 +187,10 @@ EoF
   fi
 
   cd ../
+  echo "$(date) switched back to prev dir" >>/tmp/timing-output-$(date '+%s').log
 
   cd Landing || exit # stop execution if cd fails
+  echo "$(date) switched to Landing" >>/tmp/timing-output-$(date '+%s').log
 
   echo "Configuring environment for Landing Client"
 
