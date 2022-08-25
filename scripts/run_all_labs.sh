@@ -16,6 +16,7 @@ echo "$(date) ################ Running labs... ################" | tee -a /tmp/t
 ### Note that deploying lab1 is not a requirement ####
 echo "$(date) ################ Running lab1... ################" | tee -a /tmp/timing-output.log
 cd ../Solution/Lab1/scripts
+echo "$(date) ################ First execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s -c --stack-name serverless-saas-workshop-lab1
 cd ../../../scripts/
 echo "$(date) ################ Done running lab1. ################" | tee -a /tmp/timing-output.log
@@ -24,7 +25,9 @@ echo "$(date) ################ Done running lab1. ################" | tee -a /tm
 echo "$(date) ################ Running lab2... ################" | tee -a /tmp/timing-output.log
 
 cd ../Solution/Lab2/scripts
+echo "$(date) ################ First execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s -c --email syeduh+serverlesslab@amazon.com
+echo "$(date) ################ Second execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s
 cd ../../../scripts/
 
@@ -35,7 +38,9 @@ read -p "Press enter to continue"
 echo "$(date) ################ Running lab3... ################" | tee -a /tmp/timing-output.log
 
 cd ../Solution/Lab3/scripts
+echo "$(date) ################ First execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s -c
+echo "$(date) ################ Second execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s
 cd ../../../scripts/
 
@@ -46,6 +51,7 @@ read -p "Press enter to continue"
 echo "$(date) ################ Running lab4... ################" | tee -a /tmp/timing-output.log
 
 cd ../Solution/Lab4/scripts
+echo "$(date) ################ First execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s
 cd ../../../scripts/
 
@@ -56,7 +62,9 @@ read -p "Press enter to continue"
 echo "$(date) ################ Running lab5... ################" | tee -a /tmp/timing-output.log
 
 cd ../Solution/Lab5/scripts/
+echo "$(date) ################ First execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s -c
+echo "$(date) ################ Second execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh -s
 cd ../../../scripts/
 
@@ -67,6 +75,7 @@ read -p "Press enter to continue"
 echo "$(date) ################ Running lab6... ################" | tee -a /tmp/timing-output.log
 
 cd ../Solution/Lab6/scripts/
+echo "$(date) ################ First execution of deployment script... ################" | tee -a /tmp/timing-output.log
 ./deployment.sh
 cd ../../../scripts/
 
